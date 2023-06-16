@@ -28,14 +28,14 @@ namespace Ecrans.Model
         {
             DataAccess accesBD = new DataAccess();
             String requete = "insert into categorie_materiel(nomcategorie) values ('"+this.NomCategorie+"') ;";
-            DataTable datas = accesBD.GetData(requete);
+            accesBD.SetData(requete);
         }
 
         public void Delete()
         {
             DataAccess accesBD = new DataAccess();
             String requete = "DELETE FROM categorie_materiel WHERE idcategorie='"+ this.IdCategorie+"';";
-            DataTable datas = accesBD.GetData(requete);
+            accesBD.SetData(requete);
         }
 
         public ObservableCollection<Categorie_Materiel> FindAll()
@@ -69,7 +69,7 @@ namespace Ecrans.Model
         {
             DataAccess accesBD = new DataAccess();
             String requete = "Update categorie_materiel SET nomCategorie='" + this.NomCategorie + "' where idCategorie='"+this.IdCategorie+"';";
-            DataTable datas = accesBD.GetData(requete);
+            accesBD.SetData(requete);
         }
 
         public override string ToString()

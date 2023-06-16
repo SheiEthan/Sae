@@ -30,14 +30,14 @@ namespace Ecrans.Model
         {
             DataAccess accesBD = new DataAccess();
             String requete = "insert into personnel(emailPersonnel, nomPersonnel, prenomPersonnel) values ('" + this.EmailPersonnel +"','"+this.NomPersonnel+"','"+this.PrenomPersonnel+"') ;";
-            DataTable datas = accesBD.GetData(requete);
+            accesBD.SetData(requete);
         }
 
         public void Delete()
         {
             DataAccess accesBD = new DataAccess();
             String requete = "DELETE FROM personnel WHERE idpersonnel='" + this.IdPersonnel + "';";
-            DataTable datas = accesBD.GetData(requete);
+            accesBD.SetData(requete);
         }
 
         public ObservableCollection<Personnel> FindAll()
@@ -71,7 +71,7 @@ namespace Ecrans.Model
         {
             DataAccess accesBD = new DataAccess();
             String requete = "Update personnel SET nompersonnel='" + this.NomPersonnel + "', prenompersonnel='" + this.PrenomPersonnel + "', emailpersonnel='" + this.EmailPersonnel+"' where idPersonnel='" + this.IdPersonnel + "';";
-            DataTable datas = accesBD.GetData(requete);
+            accesBD.SetData(requete);
         }
         public override string ToString()
         {
