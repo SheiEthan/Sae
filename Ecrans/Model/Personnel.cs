@@ -69,7 +69,9 @@ namespace Ecrans.Model
 
         public void Update()
         {
-            throw new NotImplementedException();
+            DataAccess accesBD = new DataAccess();
+            String requete = "Update personnel SET nompersonnel='" + this.NomPersonnel + "', prenompersonnel='" + this.PrenomPersonnel + "', emailpersonnel='" + this.EmailPersonnel+"' where idPersonnel='" + this.IdPersonnel + "';";
+            DataTable datas = accesBD.GetData(requete);
         }
         public override string ToString()
         {
