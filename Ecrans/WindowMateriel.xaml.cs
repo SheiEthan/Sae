@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ecrans.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,19 @@ namespace Ecrans
         public WindowMateriel()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            WindowCréerMateriel winAjouterMateriel = new WindowCréerMateriel(new Categorie_Materiel(), Mode.Insert);
+            winAjoutCategorie.Owner = this;
+
+            bool reponse = (bool)winAjoutCategorie.ShowDialog();
+            if (reponse == true && winAjoutCategorie.DataContext is CategorieMateriel)
+            {
+                CategorieMateriel c = (CategorieMateriel)winAjoutCategorie.DataContext;
+                c.Create();
+            }
         }
     }
 }

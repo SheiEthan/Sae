@@ -23,6 +23,7 @@ namespace Ecrans.Model
 
         public int IdCategorie { get; set; }
         public string NomCategorie { get; set; }
+        public ObservableCollection<Materiel> Materiels { get; set; }
 
         public void Create()
         {

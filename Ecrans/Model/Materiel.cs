@@ -16,6 +16,8 @@ namespace Ecrans.Model
         public string NomMateriel { get; set; }
         public string ReferenceConstructeurMateriel { get; set; }
         public string CodeBarreInventaire { get; set; }
+        public Categorie_Materiel UneCategorie { get; set; }
+        public ObservableCollection<Est_Attribue> LesAttributions { get; set; }
         public Materiel()
         {
         }

@@ -14,6 +14,8 @@ namespace Ecrans.Model
         public int FK_IdMateriel { get; set; }
         public DateTime DateAttribution { get; set; }
         public string CommentaireAttribution { get; set; }
+        public Materiel UnMateriel { get; set; }
+        public Personnel UnPersonnel { get; set; }
         public Est_Attribue()
         {
         }

@@ -26,6 +26,7 @@ namespace Ecrans.Model
         public string EmailPersonnel { get; set; }
         public string NomPersonnel { get; set; }
         public string PrenomPersonnel { get; set; }
+        public ObservableCollection<Est_Attribue> LesAttributions { get; set; }
         public void Create()
         {
             DataAccess accesBD = new DataAccess();

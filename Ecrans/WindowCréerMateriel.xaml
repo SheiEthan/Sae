@@ -20,6 +20,7 @@
             VerticalAlignment="Top"
             Content="Nom du matériel :" />
         <TextBox
+            x:Name="tbNomMat"
             Width="225"
             Margin="0,44,0,0"
             HorizontalAlignment="Center"
@@ -32,6 +33,7 @@
             VerticalAlignment="Top"
             Content="Référence du constructeur :" />
         <TextBox
+            x:Name="tbRef"
             Width="225"
             Margin="0,93,0,0"
             HorizontalAlignment="Center"
@@ -44,6 +46,7 @@
             VerticalAlignment="Top"
             Content="Code barre :" />
         <TextBox
+            x:Name="tbCodeBarre"
             Width="225"
             Margin="0,142,0,0"
             HorizontalAlignment="Center"
@@ -51,10 +54,12 @@
             Text=""
             TextWrapping="Wrap" />
         <ComboBox
+            x:Name="cbCategorie"
             Width="120"
             Margin="192,175,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top" />
+            VerticalAlignment="Top"
+            SelectedItem="{Binding Categories}" />
         <Label
             Margin="87,171,0,0"
             HorizontalAlignment="Left"
@@ -67,6 +72,7 @@
             Margin="86,213,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            Click="btAjouter_Click"
             Content="Ajouter"
             FontSize="14" />
         <Button
@@ -77,6 +83,6 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Annuler"
-            FontSize="14" />
+            FontSize="14" Click="btAnnuler_Click" />
     </Grid>
 </Window>

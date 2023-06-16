@@ -28,7 +28,7 @@
             FontSize="20" />
         <Button Content="Supprimer" Margin="454,334,72,0" VerticalAlignment="Top" Height="37"/>
         <Button Content="Modifier" Margin="454,269,72,0" VerticalAlignment="Top" Height="37"/>
-        <Button Content="Créer" Margin="454,205,72,0" VerticalAlignment="Top" Height="37"/>
+        <Button Content="Créer" Margin="454,205,72,0" VerticalAlignment="Top" Height="37" Click="Button_Click"/>
         <ListView Margin="31,102,367,26" ItemsSource="{Binding Path=Materiels}">
             <ListView.View>
                 <GridView>
