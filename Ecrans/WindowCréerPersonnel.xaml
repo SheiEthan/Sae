@@ -80,7 +80,5 @@
             VerticalAlignment="Top"
             Content="Email :"
             FontSize="14" />
-
     </Grid>
-
 </Window>
