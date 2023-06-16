@@ -1,0 +1,38 @@
+﻿<Window
+    x:Class="Ecrans.WindowSeConnecter"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Ecrans"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Se Connecter"
+    Width="350"
+    Height="240"
+    MinWidth="350"
+    MinHeight="240"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <StackPanel Margin="30,30,30,30">
+        <Label x:Name="lbLogin" Content="Login :" />
+        <TextBox
+            x:Name="tbLogin"
+            Height="24"
+            Text=""
+            TextWrapping="Wrap" />
+        <Label x:Name="lbMdp" Content="Mot de passe :" />
+        <TextBox
+            x:Name="tbMdp"
+            Height="24"
+            Text=""
+            TextWrapping="Wrap" />
+        <Button
+            x:Name="btValider"
+            Width="68"
+            Margin="1,13,10,0"
+            HorizontalAlignment="Right"
+            Click="btValider_Click"
+            Content="Valider"
+            IsDefault="True" />
+
+    </StackPanel>
+</Window>
