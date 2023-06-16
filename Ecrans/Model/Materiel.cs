@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using Ecrans.Model;
 
 namespace Ecrans.Model
@@ -34,13 +35,15 @@ namespace Ecrans.Model
         public void Create()
         {
             DataAccess accesBD = new DataAccess();
-            String requete = "insert into materiel(nomcategorie) values ('" + this.IdMateriel + "') ;";
-            DataTable datas = accesBD.GetData(requete);
+            String requete = "insert into materiel(nommateriel, referenceconstructeurmateriel,codebarreinventaire,idcategorie)  values ('" + this.NomMateriel + "','" + this.ReferenceConstructeurMateriel + "','" + this.CodeBarreInventaire + "','" + this.UneCategorie.IdCategorie + "');";
+            accesBD.SetData(requete);
         }
 
         public void Delete()
         {
-            throw new NotImplementedException();
+            DataAccess accesBD = new DataAccess();
+            String requete = "DELETE FROM materiel WHERE idmateriel='" + this.IdMateriel + "'";
+            accesBD.SetData(requete);
         }
 
         public ObservableCollection<Materiel> FindAll()
@@ -72,7 +75,10 @@ namespace Ecrans.Model
 
         public void Update()
         {
-            throw new NotImplementedException();
+            DataAccess accesBD = new DataAccess();
+            String requete = $"Update materiel SET nommateriel='{this.NomMateriel}', idcategorie =" + this.UneCategorie.IdCategorie + ", codebarreinventaire ='" + this.CodeBarreInventaire + "', referenceconstructeurmateriel ='" + this.ReferenceConstructeurMateriel + "' " + "where idmateriel=" + this.IdMateriel + "";
+            MessageBox.Show(requete);
+            accesBD.SetData(requete);
         }
         public override string ToString()
         {

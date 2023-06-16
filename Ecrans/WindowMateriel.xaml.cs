@@ -20,21 +20,52 @@ namespace Ecrans
     /// </summary>
     public partial class WindowMateriel : Window
     {
-        public WindowMateriel()
+     
+        public WindowMateriel(Window owner)
         {
+            this.Owner = owner;
+            this.DataContext = owner.DataContext;
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btCreer_Click(object sender, RoutedEventArgs e)
         {
-            WindowCréerMateriel winAjouterMateriel = new WindowCréerMateriel(new Categorie_Materiel(), Mode.Insert);
-            winAjoutCategorie.Owner = this;
+            WindowCréerMateriel WindowAjouterMateriel = new WindowCréerMateriel(new Materiel(), Mode.Insert, this);
+           
 
-            bool reponse = (bool)winAjoutCategorie.ShowDialog();
-            if (reponse == true && winAjoutCategorie.DataContext is CategorieMateriel)
+
+            bool Reponse = (bool)WindowAjouterMateriel.ShowDialog();
+            if (Reponse == true && WindowAjouterMateriel.DataContext is Materiel)
             {
-                CategorieMateriel c = (CategorieMateriel)winAjoutCategorie.DataContext;
-                c.Create();
+               Materiel m = (Materiel)WindowAjouterMateriel.DataContext;
+                m.Create();
+                ((ApplicationData)this.DataContext).Materiels.Add(m);
+                lvMateriel.Items.Refresh();
+                }
+        }
+
+        private void btModifier_Click(object sender, RoutedEventArgs e)
+        {
+            WindowCréerMateriel WindowAjouterMateriel = new WindowCréerMateriel((Materiel)lvMateriel.SelectedItem, Mode.Update, this);
+            WindowAjouterMateriel.Owner = this;
+
+            bool reponse = (bool)WindowAjouterMateriel.ShowDialog();
+            if (reponse == true)
+            {
+                Materiel m = (Materiel)lvMateriel.SelectedItem; // (Materiel)winAjoutMateriel.DataContext;
+                m.Update();
+            }
+        }
+
+        private void btSupprimer_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show(" Vous êtes sur de vouloir suprimer " + ((Materiel)lvMateriel.SelectedItem).NomMateriel, "Supprimer", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                Materiel m = (Materiel)lvMateriel.SelectedItem;
+                m.Delete();
+                lvMateriel.SelectedIndex = 0;
             }
         }
     }

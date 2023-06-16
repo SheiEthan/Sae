@@ -21,8 +21,10 @@ namespace Ecrans
     /// </summary>
     public partial class WindowCréerMateriel : Window
     {
-        public WindowCréerMateriel(Materiel mat, Mode mode)
+
+        public WindowCréerMateriel(Materiel mat, Mode mode, Window owner)
         {
+            this.Owner = owner;
             this.DataContext = mat;
             InitializeComponent();
             this.cbCategorie.ItemsSource = ((ApplicationData)this.Owner.DataContext).Categorie_Materiels;

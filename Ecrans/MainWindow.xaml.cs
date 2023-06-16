@@ -40,7 +40,7 @@ namespace Ecrans
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            WindowMateriel fenetreMateriel = new WindowMateriel();
+            WindowMateriel fenetreMateriel = new WindowMateriel(this);
             fenetreMateriel.ShowDialog();
         }
 
