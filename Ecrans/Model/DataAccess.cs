@@ -35,7 +35,7 @@ namespace Ecrans.Model /// A MODIFIER SI VOTRE PROJET A UN AUTRE NOM
           {
                 NpgSQLConnect = new NpgsqlConnection
                 {
-                    ConnectionString = "Server=srv-peda-new;port=5433;Database=sae2011; Search Path = saewpf; uid = tilliere; password = JrV6b9;"
+                    ConnectionString = "Server=srv-peda-new;port=5433;Database=sae2011; Search Path = s201wpf; uid = tilliere; password = JrV6b9;"
                 };
               NpgSQLConnect.Open();
                 
