@@ -40,7 +40,7 @@ namespace Ecrans.Model
             {
                 string regex = @"^[^@\s]+@[^@\s]+\.(com|net|fr)$";
                 if (string.IsNullOrEmpty(value) || !Regex.IsMatch(value, regex, RegexOptions.IgnoreCase))
-                    throw new ArgumentException("Le mail doit être remplie");
+                    throw new ArgumentException("Le mail doit être remplie ou correct");
                 emailPersonnel = value;
             }
         }
