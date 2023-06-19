@@ -10,6 +10,11 @@ using Ecrans.Model;
 
 namespace Ecrans.Model
 {
+    /// <summary>
+    /// Stocke 5 informations :
+    /// 3 chaines : nom,la reference et le code barre
+    /// 1 entier :  l'id et la clé etrangere 
+    /// </summary>
     public class Materiel : Crud<Materiel>
     {
         public int IdMateriel { get; set; }
@@ -19,7 +24,11 @@ namespace Ecrans.Model
         private string codeBarreInventaire;
         public Categorie_Materiel UneCategorie { get; set; }
         public ObservableCollection<Est_Attribue> LesAttributions { get; set; }
-
+        // <summary>
+        /// Obtient ou définit le nom –
+        /// ne peut pas etre null ou vide
+        /// </summary>
+        /// <exception cref="ArgumentException">  si le nom est vide ou null </exception>
         public string? NomMateriel
         {
             get
@@ -34,7 +43,11 @@ namespace Ecrans.Model
                 nomMateriel = value;
             }
         }
-
+        // <summary>
+        /// Obtient ou définit la reference  –
+        /// ne peut pas etre null ou vide
+        /// </summary>
+        /// <exception cref="ArgumentException">  si la reference est vide ou null </exception>
         public string? ReferenceConstructeurMateriel
         {
             get
@@ -49,7 +62,11 @@ namespace Ecrans.Model
                 referenceConstructeurMateriel = value;
             }
         }
-
+        // <summary>
+        /// Obtient ou définit le code baree –
+        /// ne peut pas etre null ou vide
+        /// </summary>
+        /// <exception cref="ArgumentException">  si le code barre est vide ou null </exception>
         public string? CodeBarreInventaire
         {
             get
@@ -64,11 +81,15 @@ namespace Ecrans.Model
                 codeBarreInventaire = value;
             }
         }
-
+        /// <summary>
+        /// Permet d'instancier un materiel sans rien
+        /// </summary>
         public Materiel()
         {
         }
-
+        /// <summary>
+        /// Permet d'instancier un materiel 
+        /// </summary>
         public Materiel(int idMateriel, int fK_IdCategorie, string nomMateriel, string referenceConstructeurMateriel, string codeBarreInventaire)
         {
             this.IdMateriel = idMateriel;
@@ -77,7 +98,9 @@ namespace Ecrans.Model
             this.ReferenceConstructeurMateriel = referenceConstructeurMateriel;
             this.CodeBarreInventaire = codeBarreInventaire;
         }
-
+        /// <summary>
+        /// Permet d'inserer des données dans la table materiel 
+        /// </summary>
         public void Create()
         {
             DataAccess accesBD = new DataAccess();
@@ -86,14 +109,18 @@ namespace Ecrans.Model
             requete = $"select idmateriel from materiel where referenceconstructeurmateriel = '{this.ReferenceConstructeurMateriel}'";
             this.IdMateriel = int.Parse(accesBD.GetData(requete).Rows[0]["idmateriel"].ToString());
         }
-
+        /// <summary>
+        /// Permet de supprimmer des données dans la table materiel
+        /// </summary>
         public void Delete()
         {
             DataAccess accesBD = new DataAccess();
             String requete = "DELETE FROM materiel WHERE idmateriel='" + this.IdMateriel + "'";
             accesBD.GetData(requete);
         }
-
+        /// <summary>
+        /// Permet de generer les données de la table materiel
+        /// </summary>
         public ObservableCollection<Materiel> FindAll()
         {
             ObservableCollection<Materiel> lesMateriels = new ObservableCollection<Materiel>();
@@ -120,7 +147,9 @@ namespace Ecrans.Model
         {
             throw new NotImplementedException();
         }
-
+        /// <summary>
+        /// Permet de modifier des données dans la table materiel
+        /// </summary>
         public void Update()
         {
             DataAccess accesBD = new DataAccess();

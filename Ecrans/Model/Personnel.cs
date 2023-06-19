@@ -8,12 +8,24 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Ecrans.Model
+
+/// <summary>
+/// Stocke 4 informations :
+/// 3 chaines : l'email,le nom et le prenom
+/// 1 entier :  l'id
+/// </summary>
 {
     public class Personnel : Crud<Personnel>
     {
+        /// <summary>
+        /// Permet d'instancier un personnel sans rien
+        /// </summary>
         public Personnel()
         {
         }
+        /// <summary>
+        /// Permet d'instancier un personnel 
+        /// </summary>
 
         public Personnel(int idPersonnel, string emailPersonnel, string nomPersonnel, string prenomPersonnel)
         {
@@ -29,6 +41,11 @@ namespace Ecrans.Model
         private string prenomPersonnel;
         public ObservableCollection<Est_Attribue> LesAttributions { get; set; }
 
+        /// <summary>
+        /// Obtient ou définit l'email –
+        /// L'email doit avoir un @ et finir par un .com,net ou fr
+        /// </summary>
+        /// <exception cref="ArgumentException">  si l'email n'est pas conforme </exception>
         public string? EmailPersonnel
         {
             get
@@ -44,7 +61,11 @@ namespace Ecrans.Model
                 emailPersonnel = value;
             }
         }
-
+        /// <summary>
+        /// Obtient ou définit le nom –
+        /// ne peut pas etre null ou vide
+        /// </summary>
+        /// <exception cref="ArgumentException">  si le nom est vide ou null </exception>
         public string? NomPersonnel
         {
             get
@@ -59,7 +80,11 @@ namespace Ecrans.Model
                 nomPersonnel = value.Substring(0, 1).ToUpper() + value.Substring(1).ToLower(); ;
             }
         }
-
+        // <summary>
+        /// Obtient ou définit le prenom –
+        /// ne peut pas etre null ou vide
+        /// </summary>
+        /// <exception cref="ArgumentException">  si le prenom est vide ou null </exception>
         public string? PrenomPersonnel
         {
             get
@@ -75,22 +100,29 @@ namespace Ecrans.Model
             }
         }
 
+        /// <summary>
+        /// Permet d'inserer des données dans la table personnel 
+        /// </summary>
         public void Create()
         {
             DataAccess accesBD = new DataAccess();
-            String requete = "insert into personnel(emailPersonnel, nomPersonnel, prenomPersonnel) values ('" + this.EmailPersonnel +"','"+this.NomPersonnel+"','"+this.PrenomPersonnel+"') ;";
+            String requete = "insert into personnel(emailPersonnel, nomPersonnel, prenomPersonnel) values ('" + this.EmailPersonnel + "','" + this.NomPersonnel + "','" + this.PrenomPersonnel + "') ;";
             accesBD.SetData(requete);
             requete = $"select idpersonnel from personnel where emailpersonnel = '{this.EmailPersonnel}'";
             this.IdPersonnel = int.Parse(accesBD.GetData(requete).Rows[0]["idpersonnel"].ToString());
         }
-
+        /// <summary>
+        /// Permet de supprimer des données dans la table personnel 
+        /// </summary>
         public void Delete()
         {
             DataAccess accesBD = new DataAccess();
             String requete = "DELETE FROM personnel WHERE idpersonnel='" + this.IdPersonnel + "';";
             accesBD.SetData(requete);
         }
-
+        /// <summary>
+        /// regenere des données dans la table personnel 
+        /// </summary>
         public ObservableCollection<Personnel> FindAll()
         {
             ObservableCollection<Personnel> lesPersonnels = new ObservableCollection<Personnel>();
@@ -117,11 +149,13 @@ namespace Ecrans.Model
         {
             throw new NotImplementedException();
         }
-
+        /// <summary>
+        /// Permet de mettr eà jour des données dans la table personnel 
+        /// </summary>
         public void Update()
         {
             DataAccess accesBD = new DataAccess();
-            String requete = "Update personnel SET nompersonnel='" + this.NomPersonnel + "', prenompersonnel='" + this.PrenomPersonnel + "', emailpersonnel='" + this.EmailPersonnel+"' where idPersonnel='" + this.IdPersonnel + "';";
+            String requete = "Update personnel SET nompersonnel='" + this.NomPersonnel + "', prenompersonnel='" + this.PrenomPersonnel + "', emailpersonnel='" + this.EmailPersonnel + "' where idPersonnel='" + this.IdPersonnel + "';";
             accesBD.SetData(requete);
         }
         public override string ToString()

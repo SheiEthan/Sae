@@ -13,8 +13,12 @@ namespace Ecrans.Model
         public ObservableCollection<Categorie_Materiel> Categorie_Materiels { get; set; }
         public ObservableCollection<Materiel> Materiels { get; set; }
         public ObservableCollection<Personnel> Personnels { get; set; }
+
         public ApplicationData()
         {
+            /// <summary>
+            /// Permet de generee toutes les données de la base de données
+            /// </summary>
             Est_Attribue e = new Est_Attribue();
             Est_Attribues = e.FindAll();
 
@@ -27,6 +31,10 @@ namespace Ecrans.Model
             Personnel p = new Personnel();
             Personnels = p.FindAll();
 
+            /// <summary>
+            ///  permet de liée les tables entre elles grace au clée etrangere 
+            /// </summary>
+            /// 
             foreach (Materiel unMate in Materiels.ToList())
             {
                 unMate.UneCategorie = Categorie_Materiels.ToList().Find(c => c.IdCategorie == unMate.FK_IdCategorie);
