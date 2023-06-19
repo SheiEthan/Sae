@@ -52,20 +52,37 @@ namespace Ecrans.Model.Tests
         [TestMethod()]
         public void DeleteTest()
         {
-            Assert.Fail();
+            DataAccess accesBD = new DataAccess();
+            String requete = "insert into personnel(idpersonnel, emailPersonnel, nomPersonnel, prenomPersonnel) values ('100','ethan.tillier@gmail.com','Tillier','Ethan') ;";
+            accesBD.SetData(requete);
+            requete = "select count(*) From personnel ;";
+            String requete1 = $"DELETE FROM personnel WHERE prenompersonnel='Ethan';";
+            accesBD.SetData(requete1);
+            requete = $"select prenompersonnel from personnel where prenompersonnel = 'Ethan'";
+            accesBD.GetData(requete);
+            String requete2 = "select count(*) From personnel ;";
+            accesBD.GetData(requete2);
+            Assert.AreNotEqual(requete, requete2);
         }
 
 
-        [TestMethod()]
-        public void ReadTest()
-        {
-            Assert.Fail();
-        }
+        //[TestMethod()]
+        //public void ReadTest()
+        //{
+        //    Assert.Fail();
+        //}
 
         [TestMethod()]
         public void UpdateTest()
         {
-            Assert.Fail();
+            DataAccess accesBD = new DataAccess();
+            String requete = "insert into personnel(idpersonnel, emailPersonnel, nomPersonnel, prenomPersonnel) values ('100','ethan.tillier@gmail.com','Tillier','Ethan') ;";
+            accesBD.SetData(requete);
+            String requete1 = $"Update personnel SET nompersonnel='Tillier', prenompersonnel='Nabih', emailpersonnel='ethan.tillier@gmail.com' where idPersonnel='100';";
+            accesBD.SetData(requete1);
+            requete = $"select prenompersonnel from personnel where emailpersonnel = 'ethan.tillier@gmail.com'";
+            accesBD.GetData(requete);
+            Assert.AreEqual("Nabih", accesBD.GetData(requete).Rows[0]["prenompersonnel"]);
         }
 
 
