@@ -14,11 +14,57 @@ namespace Ecrans.Model
     {
         public int IdMateriel { get; set; }
         public int FK_IdCategorie { get; set; }
-        public string NomMateriel { get; set; }
-        public string ReferenceConstructeurMateriel { get; set; }
-        public string CodeBarreInventaire { get; set; }
+        private string nomMateriel;
+        private string referenceConstructeurMateriel;
+        private string codeBarreInventaire;
         public Categorie_Materiel UneCategorie { get; set; }
         public ObservableCollection<Est_Attribue> LesAttributions { get; set; }
+
+        public string? NomMateriel
+        {
+            get
+            {
+                return nomMateriel;
+            }
+
+            set
+            {
+                if (String.IsNullOrEmpty(value))
+                    throw new ArgumentNullException("Erreur, le nom du matériel doit être inscrit !");
+                nomMateriel = value;
+            }
+        }
+
+        public string? ReferenceConstructeurMateriel
+        {
+            get
+            {
+                return referenceConstructeurMateriel;
+            }
+
+            set
+            {
+                if (String.IsNullOrEmpty(value))
+                    throw new ArgumentNullException("Erreur, la référence matériel doit être inscrit !");
+                referenceConstructeurMateriel = value;
+            }
+        }
+
+        public string? CodeBarreInventaire
+        {
+            get
+            {
+                return codeBarreInventaire;
+            }
+
+            set
+            {
+                if (String.IsNullOrEmpty(value))
+                    throw new ArgumentNullException("Erreur, le code barre doit être inscrit !");
+                codeBarreInventaire = value;
+            }
+        }
+
         public Materiel()
         {
         }

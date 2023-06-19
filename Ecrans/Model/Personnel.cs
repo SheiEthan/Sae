@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Ecrans.Model
@@ -23,10 +24,57 @@ namespace Ecrans.Model
         }
 
         public int IdPersonnel { get; set; }
-        public string EmailPersonnel { get; set; }
-        public string NomPersonnel { get; set; }
-        public string PrenomPersonnel { get; set; }
+        private string emailPersonnel;
+        private string nomPersonnel;
+        private string prenomPersonnel;
         public ObservableCollection<Est_Attribue> LesAttributions { get; set; }
+
+        public string? EmailPersonnel
+        {
+            get
+            {
+                return emailPersonnel;
+            }
+
+            set
+            {
+                string regex = @"^[^@\s]+@[^@\s]+\.(com|net|fr)$";
+                if (string.IsNullOrEmpty(value) || !Regex.IsMatch(value, regex, RegexOptions.IgnoreCase))
+                    throw new ArgumentException("Le mail doit être remplie");
+                emailPersonnel = value;
+            }
+        }
+
+        public string? NomPersonnel
+        {
+            get
+            {
+                return nomPersonnel;
+            }
+
+            set
+            {
+                if (String.IsNullOrEmpty(value))
+                    throw new ArgumentNullException("Le nom du personnel doit être remplie !");
+                nomPersonnel = value.Substring(0, 1).ToUpper() + value.Substring(1).ToLower(); ;
+            }
+        }
+
+        public string? PrenomPersonnel
+        {
+            get
+            {
+                return prenomPersonnel;
+            }
+
+            set
+            {
+                if (String.IsNullOrEmpty(value))
+                    throw new ArgumentNullException("Le prénom du personnel doit être remplie !");
+                prenomPersonnel = value.Substring(0, 1).ToUpper() + value.Substring(1).ToLower(); ;
+            }
+        }
+
         public void Create()
         {
             DataAccess accesBD = new DataAccess();

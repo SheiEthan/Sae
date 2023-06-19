@@ -31,7 +31,7 @@
             <Label Margin="150,0,0,0" Content="Date d'attribution" />
             <DatePicker x:Name="dpAttribution" Width="236" />
             <Label Margin="155,0,0,0" Content="Commentaire :" />
-            <TextBox
+            <TextBox x:Name="tbCommentaire"
                 Width="328"
                 Height="30"
                 Text="{Binding CommentaireAttribution}"

@@ -62,15 +62,16 @@ namespace Ecrans
             {
                 Personnel p = (Personnel)lvPersonnel.SelectedItem;
                 p.Delete();
-                lvPersonnel.SelectedIndex = 0;
-                ((ApplicationData)this.DataContext).Personnels.Remove(p);
-                lvPersonnel.Items.Refresh();                
+                lvPersonnel.SelectedIndex = 0;                      
              
 
                 foreach (Est_Attribue attrib in ((ApplicationData)this.DataContext).Est_Attribues.ToList<Est_Attribue>() )
                 {  if (attrib.FK_IdPersonnel == p.IdPersonnel)
                         ((ApplicationData)this.DataContext).Est_Attribues.Remove(attrib);
                 }
+
+                ((ApplicationData)this.DataContext).Personnels.Remove(p);
+                lvPersonnel.Items.Refresh();
             }
         }
     }

@@ -40,6 +40,9 @@ namespace Ecrans
 
         private void btAjouter_Click(object sender, RoutedEventArgs e)
         {
+            this.tbNomPerso.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            this.tbPrenomPerso.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            this.tbEmail.GetBindingExpression(TextBox.TextProperty).UpdateSource();
             if (String.IsNullOrEmpty(tbNomPerso.Text) || String.IsNullOrEmpty(tbPrenomPerso.Text) || String.IsNullOrEmpty(tbEmail.Text))
                 MessageBox.Show("Erreur : un nom de catégorie est attendu !", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             else

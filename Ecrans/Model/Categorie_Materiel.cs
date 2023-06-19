@@ -22,11 +22,10 @@ namespace Ecrans.Model
         }
 
         public int IdCategorie { get; set; }
-        public string NomCategorie { get; set; }
         private string nomCategorie;
         public ObservableCollection<Materiel> Materiels { get; set; }
 
-        public string NomCategorie1
+        public string? NomCategorie
         {
             get
             {
@@ -36,6 +35,7 @@ namespace Ecrans.Model
             set
             {
                 if (string.IsNullOrEmpty(value))
+                    throw new ArgumentNullException("Erreur, le nom de la catégorie ne peut pas être vide !");
                 nomCategorie = value;
             }
         }

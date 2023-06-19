@@ -68,6 +68,12 @@ namespace Ecrans
                 lvMateriel.SelectedIndex = 0;
                 ((ApplicationData)this.DataContext).Materiels.Remove(m);
                 lvMateriel.Items.Refresh();
+
+                foreach (Est_Attribue attrib in ((ApplicationData)this.DataContext).Est_Attribues.ToList<Est_Attribue>())
+                {
+                    if (attrib.FK_IdMateriel == m.IdMateriel)
+                        ((ApplicationData)this.DataContext).Est_Attribues.Remove(attrib);
+                }
             }
         }
     }

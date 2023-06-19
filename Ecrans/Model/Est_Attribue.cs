@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Ecrans.Model
@@ -13,9 +14,55 @@ namespace Ecrans.Model
         public int FK_IdPersonnel { get; set; }
         public int FK_IdMateriel { get; set; }
         public DateTime DateAttribution { get; set; }
-        public string CommentaireAttribution { get; set; }
-        public Materiel UnMateriel { get; set; }
-        public Personnel UnPersonnel { get; set; }
+        private string commentaireAttribution;
+        private Materiel unMateriel;
+        private Personnel unPersonnel;
+
+        public string? CommentaireAttribution
+        {
+            get
+            {
+                return commentaireAttribution;
+            }
+
+            set
+            {
+                if (String.IsNullOrEmpty(value))
+                    throw new ArgumentNullException("Erreur, le commentaire de l'attribution doit être inscrit !");
+                commentaireAttribution = value;
+            }
+        }
+
+        public Materiel UnMateriel
+        {
+            get
+            {
+                return unMateriel;
+            }
+
+            set
+            {
+                if (value is null)
+                    throw new ArgumentNullException("Erreur, un materiel doit être selectionné !");
+                unMateriel = value;
+            }
+        }
+
+        public Personnel UnPersonnel
+        {
+            get
+            {
+                return unPersonnel;
+            }
+
+            set
+            {
+                if (value is null)
+                    throw new ArgumentNullException("Erreur, un personnel doit être selectionné !");
+                unPersonnel = value;
+            }
+        }
+
         public Est_Attribue()
         {
         }
