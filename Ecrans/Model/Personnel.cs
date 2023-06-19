@@ -40,7 +40,7 @@ namespace Ecrans.Model
         {
             DataAccess accesBD = new DataAccess();
             String requete = "DELETE FROM personnel WHERE idpersonnel='" + this.IdPersonnel + "';";
-            accesBD.SetData(requete);
+            accesBD.GetData(requete);
         }
 
         public ObservableCollection<Personnel> FindAll()

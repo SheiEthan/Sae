@@ -38,7 +38,7 @@ namespace Ecrans.Model
         {
             DataAccess accesBD = new DataAccess();
             String requete = "DELETE FROM categorie_materiel WHERE idcategorie='"+ this.IdCategorie+"';";
-            accesBD.SetData(requete);
+            accesBD.GetData(requete);
         }
 
         public ObservableCollection<Categorie_Materiel> FindAll()

@@ -38,7 +38,7 @@ namespace Ecrans.Model
         {
             DataAccess accesBD = new DataAccess();
             String requete = " delete from est_attribue where idmateriel= "+this.UnMateriel.IdMateriel+" and dateattribution ='"+this.DateAttribution+"' and idpersonnel="+this.UnPersonnel.IdPersonnel;
-            accesBD.SetData(requete);
+            accesBD.GetData(requete);
         }
 
         public ObservableCollection<Est_Attribue> FindAll()
