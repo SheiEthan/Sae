@@ -48,9 +48,6 @@ namespace Ecrans
 
         private void btAjouter_Click(object sender, RoutedEventArgs e)
         {
-            this.cbMateriel.GetBindingExpression(ComboBox.SelectedItemProperty).UpdateSource();
-            this.cbPersonnel.GetBindingExpression(ComboBox.SelectedItemProperty).UpdateSource();
-            this.tbCommentaire.GetBindingExpression(TextBox.TextProperty).UpdateSource();
             if (cbMateriel.SelectedIndex == -1 || cbPersonnel.SelectedIndex == -1)
             {
                 MessageBox.Show("Erreur : Le materiel, le personnel et date sont attendus !", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
