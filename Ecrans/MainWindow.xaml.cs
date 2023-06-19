@@ -52,7 +52,7 @@ namespace Ecrans
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            WindowAttribution fenetreAttribution = new WindowAttribution();
+            WindowAttribution fenetreAttribution = new WindowAttribution(this);
             fenetreAttribution.ShowDialog();
         }
     }

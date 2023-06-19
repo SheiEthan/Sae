@@ -29,12 +29,16 @@ namespace Ecrans.Model
 
         public void Create()
         {
-            throw new NotImplementedException();
+            DataAccess accesBD = new DataAccess();
+            String requete = "insert into est_attribue(idpersonnel, idmateriel, dateattribution, commentaireattribution)  values ('" + this.UnPersonnel.IdPersonnel + "','" + this.UnMateriel.IdMateriel + "','" + this.DateAttribution + "','" + this.CommentaireAttribution + "');";
+            accesBD.SetData(requete);
         }
 
         public void Delete()
         {
-            throw new NotImplementedException();
+            DataAccess accesBD = new DataAccess();
+            String requete = " delete from est_attribue where idmateriel= "+this.UnMateriel.IdMateriel+" and dateattribution ='"+this.DateAttribution+"' and idpersonnel="+this.UnPersonnel.IdPersonnel;
+            accesBD.SetData(requete);
         }
 
         public ObservableCollection<Est_Attribue> FindAll()
@@ -66,7 +70,9 @@ namespace Ecrans.Model
 
         public void Update()
         {
-            throw new NotImplementedException();
+            DataAccess accesBD = new DataAccess();
+            String requete = "update est_attribue set idpersonnel="+this.UnPersonnel.IdPersonnel+", idmateriel ="+this.UnMateriel.IdMateriel+", dateattribution ='"+this.DateAttribution+"', commentaireattribution ='"+this.CommentaireAttribution+"' where idmateriel= "+this.UnMateriel.IdMateriel+" and dateattribution ='"+this.DateAttribution+"' and idpersonnel="+this.UnPersonnel.IdPersonnel;
+            accesBD.SetData(requete);
         }
     }
 }
