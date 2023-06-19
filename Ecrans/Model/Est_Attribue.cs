@@ -57,8 +57,8 @@ namespace Ecrans.Model
 
             set
             {
-                if (value is null)
-                    throw new ArgumentNullException("Erreur, un personnel doit être selectionné !");
+                //if (value is null)
+                //    throw new ArgumentNullException("Erreur, un personnel doit être selectionné !");
                 unPersonnel = value;
             }
         }
