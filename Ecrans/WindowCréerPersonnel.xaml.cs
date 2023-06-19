@@ -21,8 +21,9 @@ namespace Ecrans
     /// </summary>
     public partial class WindowCréerPersonnel : Window
     {
-        public WindowCréerPersonnel(Personnel perso, Mode mode)
+        public WindowCréerPersonnel(Personnel perso, Mode mode, Window owner)
         {
+            this.Owner = owner;
             this.DataContext = perso;
             InitializeComponent();
             if (mode == Mode.Update)

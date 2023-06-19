@@ -20,14 +20,17 @@ namespace Ecrans
     /// </summary>
     public partial class WindowCategorie : Window
     {
-        public WindowCategorie()
+        public WindowCategorie(Window owner)
         {
+            this.Owner = owner;
+            this.DataContext = owner.DataContext;
             InitializeComponent();
+
         }
 
         private void btCreer_Click(object sender, RoutedEventArgs e)
         {
-            WindowCréerCatégorie winAjoutCategorie = new WindowCréerCatégorie(new Categorie_Materiel(), Mode.Insert);
+            WindowCréerCatégorie winAjoutCategorie = new WindowCréerCatégorie(new Categorie_Materiel(), Mode.Insert,this);
             winAjoutCategorie.Owner = this;
 
             bool reponse = (bool)winAjoutCategorie.ShowDialog();
@@ -35,13 +38,15 @@ namespace Ecrans
             {
                 Categorie_Materiel c = (Categorie_Materiel)winAjoutCategorie.DataContext;
                 c.Create();
+                ((ApplicationData)this.DataContext).Categorie_Materiels.Add(c);
+                lvCategorie.Items.Refresh();
             }
 
         }
 
         private void btModifier_Click(object sender, RoutedEventArgs e)
         {
-            WindowCréerCatégorie winModifCate = new WindowCréerCatégorie((Categorie_Materiel)lvCategorie.SelectedItem, Mode.Update);
+            WindowCréerCatégorie winModifCate = new WindowCréerCatégorie((Categorie_Materiel)lvCategorie.SelectedItem, Mode.Update,this);
             winModifCate.Owner = this;
 
             bool reponse = (bool)winModifCate.ShowDialog();
@@ -60,6 +65,8 @@ namespace Ecrans
                 Categorie_Materiel c = (Categorie_Materiel)lvCategorie.SelectedItem;
                 c.Delete();
                 lvCategorie.SelectedIndex = 0;
+                ((ApplicationData)this.DataContext).Categorie_Materiels.Remove(c);
+                lvCategorie.Items.Refresh();
             }
         }
     }

@@ -34,7 +34,7 @@ namespace Ecrans
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            WindowCategorie fenetreCategorie = new WindowCategorie();
+            WindowCategorie fenetreCategorie = new WindowCategorie(this);
             fenetreCategorie.ShowDialog();
         }
 
@@ -46,7 +46,7 @@ namespace Ecrans
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            WindowPersonnel fenetrePersonnel = new WindowPersonnel();
+            WindowPersonnel fenetrePersonnel = new WindowPersonnel(this);
             fenetrePersonnel.ShowDialog();
         }
 

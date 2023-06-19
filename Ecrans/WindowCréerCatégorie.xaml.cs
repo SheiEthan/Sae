@@ -23,8 +23,9 @@ namespace Ecrans
     public enum Mode { Insert, Update };
     public partial class WindowCréerCatégorie : Window
     {        
-        public WindowCréerCatégorie(Categorie_Materiel cate, Mode mode)
+        public WindowCréerCatégorie(Categorie_Materiel cate, Mode mode, Window owner)
         {
+            this.Owner = owner;
             this.DataContext = cate;
             InitializeComponent();
             if (mode == Mode.Update)

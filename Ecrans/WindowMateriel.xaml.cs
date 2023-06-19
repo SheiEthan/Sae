@@ -53,7 +53,7 @@ namespace Ecrans
             if (reponse == true)
             {
                 Materiel m = (Materiel)lvMateriel.SelectedItem; // (Materiel)winAjoutMateriel.DataContext;
-                m.Update();
+                m.Update(); 
             }
         }
 
@@ -66,6 +66,8 @@ namespace Ecrans
                 Materiel m = (Materiel)lvMateriel.SelectedItem;
                 m.Delete();
                 lvMateriel.SelectedIndex = 0;
+                ((ApplicationData)this.DataContext).Materiels.Remove(m);
+                lvMateriel.Items.Refresh();
             }
         }
     }

@@ -12,9 +12,6 @@
     MinWidth="800"
     MinHeight="500"
     mc:Ignorable="d">
-    <Window.DataContext>
-        <model:ApplicationData x:Name="applicationData" />
-    </Window.DataContext>
     <Grid>
 
         <Rectangle

@@ -30,6 +30,8 @@ namespace Ecrans.Model
             DataAccess accesBD = new DataAccess();
             String requete = "insert into categorie_materiel(nomcategorie) values ('"+this.NomCategorie+"') ;";
             accesBD.SetData(requete);
+            requete = $"select idcategorie from categorie_materiel where nomcategorie = '{this.NomCategorie}'";
+            this.IdCategorie = int.Parse(accesBD.GetData(requete).Rows[0]["idcategorie"].ToString());
         }
 
         public void Delete()

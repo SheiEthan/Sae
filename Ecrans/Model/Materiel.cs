@@ -37,6 +37,8 @@ namespace Ecrans.Model
             DataAccess accesBD = new DataAccess();
             String requete = "insert into materiel(nommateriel, referenceconstructeurmateriel,codebarreinventaire,idcategorie)  values ('" + this.NomMateriel + "','" + this.ReferenceConstructeurMateriel + "','" + this.CodeBarreInventaire + "','" + this.UneCategorie.IdCategorie + "');";
             accesBD.SetData(requete);
+            requete = $"select idmateriel from materiel where referenceconstructeurmateriel = '{this.ReferenceConstructeurMateriel}'";
+            this.IdMateriel = int.Parse(accesBD.GetData(requete).Rows[0]["idmateriel"].ToString());
         }
 
         public void Delete()

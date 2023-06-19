@@ -20,34 +20,38 @@ namespace Ecrans
     /// </summary>
     public partial class WindowPersonnel : Window
     {
-        public WindowPersonnel()
+        public WindowPersonnel(Window owner)
         {
+            this.Owner = owner;
+            this.DataContext = owner.DataContext;
             InitializeComponent();
         }
         private void btCreer_Click(object sender, RoutedEventArgs e)
         {
-            WindowCréerPersonnel winAjoutPerso = new WindowCréerPersonnel(new Personnel(), Mode.Insert);
+            WindowCréerPersonnel winAjoutPerso = new WindowCréerPersonnel(new Personnel(), Mode.Insert,this);
             winAjoutPerso.Owner = this;
 
             bool reponse = (bool)winAjoutPerso.ShowDialog();
             if (reponse == true)
             {
-                Personnel c = (Personnel)winAjoutPerso.DataContext;
-                c.Create();
+                Personnel p = (Personnel)winAjoutPerso.DataContext;
+                p.Create();
+                ((ApplicationData)this.DataContext).Personnels.Add(p);
+                lvPersonnel.Items.Refresh();
             }
 
         }
 
         private void btModifier_Click(object sender, RoutedEventArgs e)
         {
-            WindowCréerPersonnel winModifPerso = new WindowCréerPersonnel((Personnel)lvPersonnel.SelectedItem, Mode.Update);
+            WindowCréerPersonnel winModifPerso = new WindowCréerPersonnel((Personnel)lvPersonnel.SelectedItem, Mode.Update,this);
             winModifPerso.Owner = this;
 
             bool reponse = (bool)winModifPerso.ShowDialog();
             if (reponse == true)
             {
-                Personnel c = (Personnel)winModifPerso.DataContext;
-                c.Update();
+                Personnel p = (Personnel)winModifPerso.DataContext;
+                p.Update();
             }
         }
 
@@ -56,9 +60,11 @@ namespace Ecrans
             MessageBoxResult result = MessageBox.Show("Êtes-vous sur de vouloir supprimer " + ((Personnel)lvPersonnel.SelectedItem).NomPersonnel + " " + ((Personnel)lvPersonnel.SelectedItem).PrenomPersonnel + " " + ((Personnel)lvPersonnel.SelectedItem).EmailPersonnel, "Supprimer", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
-                Personnel c = (Personnel)lvPersonnel.SelectedItem;
-                c.Delete();
+                Personnel p = (Personnel)lvPersonnel.SelectedItem;
+                p.Delete();
                 lvPersonnel.SelectedIndex = 0;
+                ((ApplicationData)this.DataContext).Personnels.Remove(p);
+                lvPersonnel.Items.Refresh();
             }
         }
     }
