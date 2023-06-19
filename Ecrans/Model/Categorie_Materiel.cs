@@ -9,6 +9,11 @@ using Ecrans.Model;
 
 namespace Ecrans.Model
 {
+    /// <summary>
+    /// Stocke 2 informations :
+    /// 1 chaines : le nom de la catégorie
+    /// 1 entier : l'identifiant de la catégorie
+    /// </summary>
     public class Categorie_Materiel : Crud<Categorie_Materiel>
     {
         public Categorie_Materiel()
@@ -25,6 +30,11 @@ namespace Ecrans.Model
         private string nomCategorie;
         public ObservableCollection<Materiel> Materiels { get; set; }
 
+        /// <summary>
+        /// Obtient ou définit le nom de la catégorie –
+        /// Le nom de la catégorie ne doit pas être nul / vide
+        /// </summary>
+        /// <exception cref="ArgumentNullException"> Envoyée si le nom de la catégorie est nul / vide </exception>
         public string? NomCategorie
         {
             get
@@ -40,6 +50,10 @@ namespace Ecrans.Model
             }
         }
 
+        /// <summary>
+        /// Crée une catégorie de materiel dans la base de donnée
+        /// </summary>
+        
         public void Create()
         {
             DataAccess accesBD = new DataAccess();
@@ -49,6 +63,10 @@ namespace Ecrans.Model
             this.IdCategorie = int.Parse(accesBD.GetData(requete).Rows[0]["idcategorie"].ToString());
         }
 
+        /// <summary>
+        /// Supprime une catégorie de materiel dans la base de donnée
+        /// </summary>
+        
         public void Delete()
         {
             DataAccess accesBD = new DataAccess();
@@ -56,6 +74,10 @@ namespace Ecrans.Model
             accesBD.GetData(requete);
         }
 
+        /// <summary>
+        /// Regénère une catégorie de materiel dans la base de donnée
+        /// </summary>
+        
         public ObservableCollection<Categorie_Materiel> FindAll()
         {
             ObservableCollection<Categorie_Materiel> lesCategoriesMateriels = new ObservableCollection<Categorie_Materiel>();
@@ -83,6 +105,10 @@ namespace Ecrans.Model
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Met à jour une catégorie de materiel dans la base de donnée
+        /// </summary>
+        
         public void Update()
         {
             DataAccess accesBD = new DataAccess();

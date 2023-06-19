@@ -9,6 +9,13 @@ using System.Threading.Tasks;
 
 namespace Ecrans.Model
 {
+    /// <summary>
+    /// Stocke 4 informations :
+    /// 1 chaines : un commentaire sur l'attribution
+    /// 2 entier : l'identifiant du personnel et l'identifiant du materiel
+    /// 1 datetime : la date d'attribution
+    /// </summary>
+
     public class Est_Attribue : Crud<Est_Attribue>
     {
         public int FK_IdPersonnel { get; set; }
@@ -17,6 +24,12 @@ namespace Ecrans.Model
         private string commentaireAttribution;
         private Materiel unMateriel;
         private Personnel unPersonnel;
+
+        /// <summary>
+        /// Obtient ou définit un commentaire sur l'attribution –
+        /// Le commentaire ne dois pas être nul / vide
+        /// </summary>
+        /// <exception cref="ArgumentNullException"> Envoyée si le commentaire est nul / vide </exception>
 
         public string? CommentaireAttribution
         {
@@ -33,6 +46,12 @@ namespace Ecrans.Model
             }
         }
 
+        /// <summary>
+        /// Obtient ou définit un materiel –
+        /// Un materiel doit être selectionné
+        /// </summary>
+        /// <exception cref="ArgumentNullException"> Envoyée si aucun materiel n'est selectionné </exception>
+        
         public Materiel UnMateriel
         {
             get
@@ -47,6 +66,12 @@ namespace Ecrans.Model
                 unMateriel = value;
             }
         }
+
+        /// <summary>
+        /// Obtient ou définit un personnel –
+        /// Un personnel doit être selectionné
+        /// </summary>
+        /// <exception cref="ArgumentNullException"> Envoyée si aucun personnel n'est selectionné </exception>
 
         public Personnel UnPersonnel
         {
@@ -74,6 +99,10 @@ namespace Ecrans.Model
             this.CommentaireAttribution = commentaireAttribution;
         }
 
+        /// <summary>
+        /// Crée une attribution dans la base de données
+        /// </summary>
+        
         public void Create()
         {
             DataAccess accesBD = new DataAccess();
@@ -81,6 +110,10 @@ namespace Ecrans.Model
             accesBD.SetData(requete);
         }
 
+        /// <summary>
+        /// Supprime une attribution dans la base de données
+        /// </summary>
+        
         public void Delete()
         {
             DataAccess accesBD = new DataAccess();
@@ -88,6 +121,10 @@ namespace Ecrans.Model
             accesBD.GetData(requete);
         }
 
+        /// <summary>
+        /// Regénère une attribution dans la base de données
+        /// </summary>
+        
         public ObservableCollection<Est_Attribue> FindAll()
         {
             ObservableCollection<Est_Attribue> Est_Attribues = new ObservableCollection<Est_Attribue>();
@@ -115,6 +152,10 @@ namespace Ecrans.Model
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Met à jour une attribution dans la base de données
+        /// </summary>
+        
         public void Update()
         {
             DataAccess accesBD = new DataAccess();
