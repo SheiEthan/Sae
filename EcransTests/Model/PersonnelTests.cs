@@ -53,9 +53,9 @@ namespace Ecrans.Model.Tests
         public void DeleteTest()
         {
             DataAccess accesBD = new DataAccess();
-            String requete = "insert into personnel(idpersonnel, emailPersonnel, nomPersonnel, prenomPersonnel) values ('100','ethan.tillier@gmail.com','Tillier','Ethan') ;";
-            accesBD.SetData(requete);
-            requete = "select count(*) From personnel ;"; 
+            String requeteInser = "insert into personnel(idpersonnel, emailPersonnel, nomPersonnel, prenomPersonnel) values ('100','ethan.tillier@gmail.com','Tillier','Ethan') ;";
+            accesBD.SetData(requeteInser);
+            String requete = "select count(*) From personnel ;";
             accesBD.GetData(requete);
             String requete1 = $"DELETE FROM personnel WHERE prenompersonnel='Ethan';";
             accesBD.SetData(requete1);
