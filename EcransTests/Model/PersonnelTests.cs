@@ -55,14 +55,13 @@ namespace Ecrans.Model.Tests
             DataAccess accesBD = new DataAccess();
             String requete = "insert into personnel(idpersonnel, emailPersonnel, nomPersonnel, prenomPersonnel) values ('100','ethan.tillier@gmail.com','Tillier','Ethan') ;";
             accesBD.SetData(requete);
-            requete = "select count(*) From personnel ;";
+            requete = "select count(*) From personnel ;"; 
+            accesBD.GetData(requete);
             String requete1 = $"DELETE FROM personnel WHERE prenompersonnel='Ethan';";
             accesBD.SetData(requete1);
-            requete = $"select prenompersonnel from personnel where prenompersonnel = 'Ethan'";
-            accesBD.GetData(requete);
             String requete2 = "select count(*) From personnel ;";
             accesBD.GetData(requete2);
-            Assert.AreNotEqual(requete, requete2);
+            Assert.AreNotEqual(accesBD.GetData(requete), accesBD.GetData(requete2));
         }
 
 

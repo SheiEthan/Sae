@@ -62,21 +62,21 @@
             VerticalAlignment="Top"
             Content="MATINFO"
             FontSize="20" />
-        <TreeView
+        <TreeView x:Name="tvAll"
             Width="286"
             Height="302"
             Margin="39,118,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top">
-            <TreeViewItem
+            <TreeViewItem x:Name="tvCat"
                 Header="Catégorie Matériel"
                 IsExpanded="false"
-                ItemsSource="{Binding Path=Categorie_Materiels}" />
-            <TreeViewItem
+                ItemsSource="{Binding Path=Categorie_Materiels}" Selected="tvCat_Selected" />
+            <TreeViewItem x:Name="tvMat"
                 Header="Matériel"
                 IsExpanded="false"
                 ItemsSource="{Binding Path=Materiels}" />
-            <TreeViewItem
+            <TreeViewItem x:Name="tvPerso"
                 Header="Personnel"
                 IsExpanded="false"
                 ItemsSource="{Binding Path=Personnels}" />
@@ -93,7 +93,7 @@
             VerticalAlignment="Top"
             Content="" />
 
-        <ListView
+        <ListView x:Name="lvAttri"
             Height="156"
             Margin="344,118,26,0"
             VerticalAlignment="Top"
@@ -106,12 +106,12 @@
             </ListView.View>
 
         </ListView>
-        <Button
+        <Button x:Name="btToutesAttri"
             Width="169"
             Height="25"
             Margin="482,85,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Content="Afficher toutes les attributions" />
+            Content="Afficher toutes les attributions" Click="btToutesAttri_Click" />
     </Grid>
 </Window>

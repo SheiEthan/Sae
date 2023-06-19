@@ -55,5 +55,15 @@ namespace Ecrans
             WindowAttribution fenetreAttribution = new WindowAttribution(this);
             fenetreAttribution.ShowDialog();
         }
+
+        private void tvCat_Selected(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void btToutesAttri_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }
