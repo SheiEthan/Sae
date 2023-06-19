@@ -65,6 +65,9 @@ namespace Ecrans
                 lvPersonnel.SelectedIndex = 0;
                 ((ApplicationData)this.DataContext).Personnels.Remove(p);
                 lvPersonnel.Items.Refresh();
+                Est_Attribue attri = (Est_Attribue)lvPersonnel.SelectedItem;
+                if (attri.FK_IdPersonnel == p.IdPersonnel)
+                    ((ApplicationData)this.DataContext).Est_Attribues.Remove(attri);
             }
         }
     }
